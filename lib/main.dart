@@ -22,14 +22,16 @@ class _AutoCorrectTestState extends State<AutoCorrectTest> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TextField with autocorrect: false'),
+        title: Text(
+            'TextField with autocorrect: false and enableSuggestions: false'),
       ),
       body: Padding(
           padding: EdgeInsets.all(16.0),
           child: TextField(
-              autocorrect: false
-          )
-      ),
+              obscureText: true,
+              autocorrect: false,
+              enableSuggestions: false,
+              keyboardType: TextInputType.visiblePassword)),
     );
   }
 }
