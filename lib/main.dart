@@ -6,23 +6,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Playground',
-      home: AutoCorrectTest(),
+      title: 'Login Form Sample',
+      home: LoginFormScreen(),
     );
   }
 }
 
-class AutoCorrectTest extends StatefulWidget {
+class LoginFormScreen extends StatefulWidget {
   @override
-  _AutoCorrectTestState createState() => _AutoCorrectTestState();
+  _LoginFormScreenState createState() => _LoginFormScreenState();
 }
 
-class _AutoCorrectTestState extends State<AutoCorrectTest> {
+class _LoginFormScreenState extends State<LoginFormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('ID Pass Form Sample'),
+          title: Text('Login Form Sample'),
         ),
         body: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -32,7 +32,9 @@ class _AutoCorrectTestState extends State<AutoCorrectTest> {
                   padding: EdgeInsets.all(10.0),
                   child: TextFormField(
                     maxLength: 16,
-                    autocorrect: false,
+                    autocorrect: true,
+                    enableInteractiveSelection: true,
+                    keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
                       border: UnderlineInputBorder(),
                       filled: true,
@@ -52,22 +54,14 @@ class _AutoCorrectTestState extends State<AutoCorrectTest> {
 
 class PasswordField extends StatefulWidget {
   const PasswordField({
-    this.fieldKey,
     this.hintText,
     this.labelText,
     this.helperText,
-    this.onSaved,
-    this.validator,
-    this.onFieldSubmitted,
   });
 
-  final Key fieldKey;
   final String hintText;
   final String labelText;
   final String helperText;
-  final FormFieldSetter<String> onSaved;
-  final FormFieldValidator<String> validator;
-  final ValueChanged<String> onFieldSubmitted;
 
   @override
   _PasswordFieldState createState() => _PasswordFieldState();
@@ -75,18 +69,17 @@ class PasswordField extends StatefulWidget {
 
 class _PasswordFieldState extends State<PasswordField> {
   bool _obscureText = true;
+  TextInputType _textInputType = TextInputType.visiblePassword;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      key: widget.fieldKey,
       obscureText: _obscureText,
       autocorrect: false,
+      enableInteractiveSelection: false,
       maxLength: 8,
-      keyboardType: TextInputType.visiblePassword,
-      onSaved: widget.onSaved,
-      validator: widget.validator,
-      onFieldSubmitted: widget.onFieldSubmitted,
+      enableSuggestions: false,
+      keyboardType: _textInputType,
       decoration: InputDecoration(
         border: const UnderlineInputBorder(),
         filled: true,
